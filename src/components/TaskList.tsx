@@ -28,9 +28,24 @@ export function TaskList() {
      setTasks([...tasks, newTask]);
   }
 
-  function handleToggleTaskCompletion(id: number) {}
+  function handleToggleTaskCompletion(id: number) {
+    const newTasks = tasks.map((task) =>
+      task.id === id
+        ? {
+            ...task,
+            isComplete: !task.isComplete,
+          }
+        : task
+    );
 
-  function handleRemoveTask(id: number) {}
+    setTasks([...newTasks]);
+  }
+
+  function handleRemoveTask(id: number) {
+    const filteredTasks = tasks.filter((task: Task) => task.id !== id);
+
+    setTasks([...filteredTasks]);
+  }
 
   return (
     <section className="task-list container">
